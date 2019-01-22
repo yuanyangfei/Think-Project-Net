@@ -1,0 +1,7 @@
+xj2pdidsvn源代码地址：https://106.75.44.151/svn/Dept_Platform-WH/平台与自建项目项目资料及代码/威乐/WILO
+
+数据库连接字符串：Server=192.168.0.220;Database=WILO;User ID=sa;Password=
+Aa1234
+
+
+xj2pdid

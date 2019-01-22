@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  think.web:
+    image: ${DOCKER_REGISTRY}thinkweb
+    build:
+      context: .\Think.Web
+      dockerfile: Dockerfile

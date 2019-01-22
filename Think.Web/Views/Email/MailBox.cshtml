@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>H+ 后台主题UI框架 - 收件箱</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="~/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="~/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="~/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/style.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content mailbox-content">
+                        <div class="file-manager">
+                            <a class="btn btn-block btn-primary compose-mail" href="/Email/Mail_Compose">写信</a>
+                            <div class="space-25"></div>
+                            <h5>文件夹</h5>
+                            <ul class="folder-list m-b-md" style="padding: 0">
+                                <li>
+                                    <a href="/Email/MailBox" id="is_read">
+                                        <i class="fa fa-inbox "></i> 收件箱 
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailbox.html"> <i class="fa fa-envelope-o"></i> 发信</a>
+                                </li>
+                                <li>
+                                    <a href="mailbox.html"> <i class="fa fa-certificate"></i> 重要</a>
+                                </li>
+                                <li>
+                                    <a href="mailbox.html">
+                                        <i class="fa fa-file-text-o"></i> 草稿 <span class="label label-danger pull-right">2</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailbox.html"> <i class="fa fa-trash-o"></i> 垃圾箱</a>
+                                </li>
+                            </ul>
+                            <h5>分类</h5>
+                            <ul class="category-list" style="padding: 0">
+                                <li>
+                                    <a href="mail_compose.html#"> <i class="fa fa-circle text-navy"></i> 工作</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html#"> <i class="fa fa-circle text-danger"></i> 文档</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html#"> <i class="fa fa-circle text-primary"></i> 社交</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html#"> <i class="fa fa-circle text-info"></i> 广告</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html#"> <i class="fa fa-circle text-warning"></i> 客户端</a>
+                                </li>
+                            </ul>
+                            <h5 class="tag-title">标签</h5>
+                            <ul class="tag-list" style="padding: 0">
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 朋友</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 工作</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 家庭</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 孩子</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 假期</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 音乐</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 照片</a>
+                                </li>
+                                <li>
+                                    <a href="mail_compose.html"><i class="fa fa-tag"></i> 电影</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 animated fadeInRight">
+                <div class="mail-box-header">
+                    <form method="get" action="index.html" class="pull-right mail-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm" name="search" placeholder="搜索邮件标题，正文等">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    搜索
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <h2 id="email_count">
+                        
+                    </h2>
+                    <div class="mail-tools tooltip-demo m-t-md">
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-white btn-sm" id="top" onclick="btn_top_pagelist()">
+                                <i class="fa fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-white btn-sm" id="sub" onclick="btn_sub_pagelist()">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="刷新邮件列表" onclick="btn_refresh()"><i class="fa fa-refresh"></i> 刷新</button>
+                        <button class="btn btn-white btn-sm" onclick="btn_isread()" data-toggle="tooltip" data-placement="top" title="标为已读">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="标为重要">
+                            <i class="fa fa-exclamation"></i>
+                        </button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="标为垃圾邮件">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="mail-box">
+                    <table class="table table-hover table-mail">
+                        <tbody id="email_list">
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <span id="dis_span"></span>
+    <span id="dis_count"></span>
+    <!-- 全局js -->
+    <script src="~/js/jquery.min.js?v=2.1.4"></script>
+    <script src="~/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="~/js/content.js?v=1.0.0"></script>
+    <script src="~/js/clientdata.js"></script>
+    <!-- iCheck -->
+    <script src="~/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+            $(document).ready(function() {
+                        $('.i-checks').iCheck({
+                            checkboxClass: 'icheckbox_square-green',
+                            radioClass: 'iradio_square-green',
+                });
+                var index = '@Request.QueryString["page_index"]' ;
+                if (index == '') {
+                    index = 1;
+                } else {
+                    index = '@Request.QueryString["page_index"]';
+                }
+                        LoadEmailList(index); //默认加载第一行数据
+                        LoadEmailCount();
+                        sizeflow();
+                    });
+           //上一页
+        function btn_top_pagelist() {
+            var i = $('#dis_span').text(); //当前页码
+            if (i ==1 ) {
+                EmptyEmailList();
+            } else {
+                i--;
+                LoadEmailList(i)
+            }
+        }
+        //下一页
+        function btn_sub_pagelist() {
+            var i = $('#dis_span').text();
+            var j = $('#dis_count').text(); //总页码
+            if (i == j)
+            {
+                EmptyEmailList();
+            }
+            else {
+                i++;
+                LoadEmailList(i)
+            }
+        }
+        //加载页面所展示邮件数量
+        function LoadEmailCount() {
+            $('#is_read > span').remove(); //重置未读数量
+            var count = top.clients.emailcount; //所有邮件数量
+            $("#email_count").text("收件箱（" + count + "）");
+            var no_isread = top.clients.email; //未读数量
+            if (no_isread > 0) {
+                var _html = '<span class="label label-warning pull-right">' + no_isread + '</span>';
+                $("#is_read").append(_html);
+            }
+        }
+        //加载页面邮件文章列表
+        function LoadEmailList(_index) {
+            $.ajax({
+                url: "/Email/EmailBoxList",
+                type: "get",
+                data: { page: 2, index: _index },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $('#email_list').empty(); //.html = "";
+                    var _html = "";
+                    var _font_style = '';
+                    var _count = 0;
+                    $.each(data.email, function (i) {
+                        var row = data.email[i];
+                        var msg = row.PF_MSG.replace(/<\/?.+?>/g, "");
+                        msg = msg.replace(/ /g, "");
+                        if (row.PF_IsRead == 0) {
+                            _font_style = 'style="font-weight:600"';
+                        } else
+                            _font_style = "";
+                        _html += '<tr class="read">';
+                        _html += '<td class="check-mail"><input type = "checkbox" value = "' + row.PF_ID + '" class="i-checks" /></td >';
+                        _html += '<td class="mail-ontact"><a href="/Email/Mail_Detail?id=' + row.PF_ID + '&index=' + data._index+'" ' + _font_style + '>' + row.PF_Title + '</a> <span class="label label-warning pull-right">AD</span></td>';
+                        _html += '<td class="mail-subject"><a class="size_flow" href="/Email/Mail_Detail?id=' + row.PF_ID + '&index=' + data._index +'" ' + _font_style + '>' + msg + '</a></td>';
+                        _html += '<td class=""><i class="fa fa-paperclip"></i></td>';
+                        _html += '<td class="text-right mail-date" ' + _font_style + '>' + getDateDiff(row.PF_CreateTime) + '</td>'; 
+                        _html += '</tr>';
+                        _count++;
+                    })
+                    $('#email_list').append(_html);
+                    $('#dis_span').text(data._index);
+                    $('#dis_count').text(data._index_count);
+                    var index = data._index;
+                    auth_button(index);
+                }
+            });
+        }
+        //标记已阅读：checked 触发事件
+        function btn_isread() {
+            var str = "";
+            $("input[type='checkbox']").each(function () {
+                if ($(this).is(":checked")) {
+                    if ($(this).val() != "on")
+                        str += $(this).val() + ",";
+                }
+            });
+            str = str.substring(0, str.length - 1);
+            //传递的为PF_ID
+            $.ajax({
+                url: "/Email/MarkedRead",
+                type: "post",
+                data: { keys: str },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data.state == "success") {
+                       // LoadEmailCount();
+                        LoadEmailList($("#dis_span").text());//刷新当前页
+                    }
+                    else
+                        alert(data.message);
+                }
+            });
+        }
+        //转换时间戳
+        function getDateDiff(dateTimeStamp) {
+            var now = new Date().getTime();
+            var diffValue = now - new Date(dateTimeStamp);
+            var result;
+            var minute = 1000 * 60;
+            var hour = minute * 60;
+            var day = hour * 24;
+            var halfamonth = day * 15;
+            var month = day * 30;
+            if (diffValue < 0) {
+                return;
+            }
+            var monthC = diffValue / month;
+            var weekC = diffValue / (7 * day);
+            var dayC = diffValue / day;
+            var hourC = diffValue / hour;
+            var minC = diffValue / minute;
+            if (monthC >= 1) {
+                if (monthC <= 12)
+                    result = "" + parseInt(monthC) + "月前";
+                else {
+                    result = "" + parseInt(monthC / 12) + "年前";
+                }
+            }
+            else if (weekC >= 1) {
+                result = "" + parseInt(weekC) + "周前";
+            }
+            else if (dayC >= 1) {
+                result = "" + parseInt(dayC) + "天前";
+            }
+            else if (hourC >= 1) {
+                result = "" + parseInt(hourC) + "小时前";
+            }
+            else if (minC >= 1) {
+                result = "" + parseInt(minC) + "分钟前";
+            } else {
+                result = "刚刚";
+            }
+            return result;
+        };
+        //置空数据初始化 提示
+        function EmptyEmailList() {
+            $('#email_list').empty();
+            var _html = '<p><h3>无更多数据了，我是有底线的</h3></p>';
+            $('#email_list').append(_html);
+        }
+        //按钮权限控制
+        function auth_button(index) {
+            var _count = $('#dis_count').text();
+          
+            if (index == 1) //top翻页 禁止
+            {
+                $("#top").attr('disabled', true);
+              
+            }
+             if (index == _count) //当前页  达到总页数的顶峰
+            {
+                $("#top").removeAttr("disabled");
+                $("#sub").attr('disabled', true);
+            }
+            if (index < _count && index !=1)
+            {
+                $("#top").removeAttr("disabled");
+                $("#sub").removeAttr("disabled");
+            }
+
+        }
+        //刷新按钮
+        function btn_refresh() {
+            LoadEmailList(1);
+            }
+        //限制字符个数
+        function sizeflow() {
+                $(".size_flow").each(function () {
+                    var maxwidth = 30;
+                    if ($(this).text().length > maxwidth) {
+                        $(this).text($(this).text().substring(0, maxwidth));
+                        $(this).html($(this).html() + '...');
+                    }
+                });
+        }
+    </script>
+    <!--统计代码，可删除-->
+</body>
+</html>
