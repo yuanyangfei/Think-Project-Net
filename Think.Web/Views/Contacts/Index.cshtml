@@ -1,15 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title>H+ 后台主题UI框架 - 联系人</title>
-    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+﻿@model Think.Web.Models.Contacts.ContactsViewModel
+@using Think.Web.Models
 
     <link rel="~/shortcut icon" href="favicon.ico"> 
     <link href="~/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -17,26 +7,63 @@
     <link href="~/css/animate.css" rel="stylesheet">
     <link href="~/css/style.css?v=4.1.0" rel="stylesheet">
 
-</head>
-
 <body class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row" id="content-box">
-          
+    <!--主体提交表单-->
+    <form name="searchform" action="@Url.Action("Index", new {index="1" })" method="post">
+        <div class="input-group" style="width:30%;margin-left:2rem;margin-top:5px">
+            <input type="text" class="form-control input-sm" name="searchKey" value="@Model.SearchKey" placeholder="搜索联系人，公司等">
+            <div class="input-group-btn" >
+                <span class="btn input-group-addon" onclick="document.searchform.submit();">
+                    <span class="glyphicon  glyphicon-search" style="line-height:1.2"></span>
+                </span>
+            </div>
         </div>
-    </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row" id="content-box">
+                <!--开始-->
+                @foreach (var post in Model.Posts)
+                {
+                    <div class="col-sm-4">
+                        <div class="contact-box">
+                            <a href="profile.html">
+                                <div class="col-sm-4">
+                                    <div class="text-center">
+                                        <img alt="image" class="img-circle m-t-xs img-responsive" src='@post.PF_IMG'>
+                                        <div class="m-t-xs font-bold">@post.PF_JOB</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    ';
+                                    <h3><strong>@post.PF_NAME</strong></h3>
+                                    <p><i class="fa fa-map-marker"></i>&nbsp;@post.PF_ADDRESS</p>
+                                    <address>
+                                        <strong>@post.PF_COMPANY</strong><br>
+                                        E-mail:@post.PF_EMAIL<br>
+                                        Weibo:<a href="">@post.PF_WEIBO</a><br>
+                                        <abbr title="Phone">Tel:</abbr>@post.PF_TELL
+                                    </address>
+                                </div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div>
+                    </div>
+                }
 
+            </div>
+        </div>
+    </form>
+    <!--表单结束-->
+    <!--分页代码-->
+    <div class="page_footer" style="text-align:center">
+        @Html.Partial("_LayoutPage1", Model.PageModel)
+    </div>
+    <!--结束-->
     <!-- 全局js -->
     <script src="~/js/jquery.min.js?v=2.1.4"></script>
     <script src="~/js/bootstrap.min.js?v=3.3.6"></script>
 
-
-
     <!-- 自定义js -->
     <script src="~/js/content.js?v=1.0.0"></script>
-
-
-
     <script>
         $(document).ready(function () {
             $('.contact-box').each(function () {
@@ -44,52 +71,59 @@
             });
         });
     </script>
-
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
     <script type="text/javascript">
         $(function () {
-
+           
         })
+        function seach_btn() {
+            var str = $("input[name='search']").val();
+            //  CustormList(str);
+        }
         //加载列表
-        function CustormList() {
+        function CustormList(str) {
             $.ajax({
-                url:'/Contacts/GetPeople',
-                type: 'post',
-                datatype: 'json',
+                url: '/Contacts/GetPeople',
+                type: 'get',
+                data: { name: str },
+                dataType: "json",
+                async: false,
                 success: function (data) {
                     var _html = "";
-                    $.each(data.people, function (i) {
-                        var row = data.people[i];
-                        _html += '<div class="col-sm-4" >';
-                        _html += '<div class="contact-box">';
-                        _html += '<a href="profile.html">';
-                        _html += '<div class="col-sm-4">';
-                        _html += '<div class="text-center">';
-                        _html += '<img alt="image" class="img-circle m-t-xs img-responsive" src=' + row.PF_IMG + '>';
-                        _html += '<div class="m-t-xs font-bold">' + row.PF_JOB + '</div>';
-                        _html += '</div>';
-                        _html += '</div>';
-                        _html += '<div class="col-sm-8">';
-                        _html += '<h3><strong>' + row.PF_NAME + '</strong></h3>';
-                        _html += '<p><i class="fa fa-map-marker"></i>' + row.PF_ADDRESS + '</p>';
-                        _html += '<address>';
-                        _html += '<strong>' + row.PF_COMPANY + '</strong><br>';
-                        _html += 'E-mail:' + row.PF_EMAILL + '<br>';
-                        _html += 'Weibo:<a href="">' + row.PF_WEIBO + '</a><br>';
-                        _html += '<abbr title="Phone">Tel:</abbr> ' + row.PF_TELL + '';
-                        _html += '</address>';
-                        _html += '</div>';
-                        _html += '<div class="clearfix"></div>';
-                        _html += '</a>';
-                        _html += '</div>';
-                        _html += '</div>';
-                    });
+                    $("#content-box").empty();
+                    if (data.people != "") {
+                        $.each(data.people, function (i) {
+                            var row = data.people[i];
+                            _html += '<div class="col-sm-4" >';
+                            _html += '<div class="contact-box">';
+                            _html += '<a href="profile.html">';
+                            _html += '<div class="col-sm-4">';
+                            _html += '<div class="text-center">';
+                            _html += '<img alt="image" class="img-circle m-t-xs img-responsive" src=' + row.PF_IMG + '>';
+                            _html += '<div class="m-t-xs font-bold">' + row.PF_JOB + '</div>';
+                            _html += '</div>';
+                            _html += '</div>';
+                            _html += '<div class="col-sm-8">';
+                            _html += '<h3><strong>' + row.PF_NAME + '</strong></h3>';
+                            _html += '<p><i class="fa fa-map-marker"></i>&nbsp;' + row.PF_ADDRESS + '</p>';
+                            _html += '<address>';
+                            _html += '<strong>' + row.PF_COMPANY + '</strong><br>';
+                            _html += 'E-mail:' + row.PF_EMAILL + '<br>';
+                            _html += 'Weibo:<a href="">' + row.PF_WEIBO + '</a><br>';
+                            _html += '<abbr title="Phone">Tel:</abbr> ' + row.PF_TELL + '';
+                            _html += '</address>';
+                            _html += '</div>';
+                            _html += '<div class="clearfix"></div>';
+                            _html += '</a>';
+                            _html += '</div>';
+                            _html += '</div>';
+                        });
+                    } else {
+                        _html += '<p><h3>无更多数据了...</h3></p>';
+                    }
                     $("#content-box").html(_html);
                 }
             });
         }
     </script>
 </body>
-
-</html>

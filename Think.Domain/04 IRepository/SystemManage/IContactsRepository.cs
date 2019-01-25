@@ -6,6 +6,7 @@ namespace Think.Domain.IRepository.SystemManage
 {
     public interface IContactsRepository
     {
-        List<Sys_Custorm> GetCustorms();
+        List<Sys_Custorm> GetCustorms(string str);
+        IEnumerable<Sys_Custorm> GetCustorms(string name,int pageIndex,int pageSize);
     }
 }

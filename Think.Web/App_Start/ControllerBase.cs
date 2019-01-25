@@ -6,7 +6,7 @@ namespace Think.Web
     [HandlerLogin]
     public abstract class ControllerBase : Controller
     {
-        public Log FileLog
+        public Code.Log FileLog
         {
             get { return LogFactory.GetLogger(this.GetType().ToString()); }
         }

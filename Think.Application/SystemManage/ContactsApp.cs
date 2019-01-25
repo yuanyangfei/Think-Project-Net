@@ -13,9 +13,13 @@ namespace Think.Application.SystemManage
     {
         private IContactsRepository contacts = new ContactsRepository();
 
-        public List<Sys_Custorm> GetCustorms()
+        public List<Sys_Custorm> GetCustorms(string str)
         {
-            return contacts.GetCustorms();
+            return contacts.GetCustorms(str);
+        }
+        public IEnumerable<Sys_Custorm> GetCustorms(string name, int pageIndex, int pageSize)
+        {
+            return contacts.GetCustorms(name, pageIndex, pageSize);
         }
     }
 }

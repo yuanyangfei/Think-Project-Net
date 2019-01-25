@@ -162,6 +162,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BasePageModel.cs" />
+    <Compile Include="Models\Contacts\ContactsViewModel.cs" />
+    <Compile Include="Models\HtmlHelperExtensions.cs" />
+    <Compile Include="Models\PagingHelper.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="plugins\fullavatareditor\asp.net\c#\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +262,7 @@
     <Content Include="css\plugins\treeview\bootstrap-treeview.css" />
     <Content Include="css\plugins\webuploader\webuploader.css" />
     <Content Include="css\style.css" />
+    <Content Include="CustormImg\马化腾.jpg" />
     <Content Include="docs\img\index_4.png" />
     <Content Include="docs\img\page.png" />
     <Content Include="docs\img\preview.png" />
@@ -888,12 +894,12 @@
     <Content Include="Views\Email\Mail_Detail.cshtml" />
     <Content Include="Views\Email\Mail_Compose.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialPage.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="UploadImg\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -450,6 +450,7 @@ namespace Think.Code
             string src = "C:\\Users\\PanPass_Win7\\Desktop\\Think.Project\\Think.Project\\Think.Web";
             OperatorModel operatorModel = new OperatorModel();
             ImgName = new List<string>();
+            if (img == null) return true;
             foreach (var item in img)
             {
                 int beginIndex = item.IndexOf("data:");

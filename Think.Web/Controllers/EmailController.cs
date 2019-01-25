@@ -178,9 +178,12 @@ namespace Think.Web.Controllers
                     //把img 的src  依次替换
                     //新的_html 内容
                     var _html = msg;
-                    for (int i = 0; i < base_.Length; i++)
+                    if (base_ != null)
                     {
-                        _html = _html.Replace(base_[i], "/UploadImg/" + ImgName[i]);
+                        for (int i = 0; i < base_.Length; i++)
+                        {
+                            _html = _html.Replace(base_[i], "/UploadImg/" + ImgName[i]);
+                        }
                     }
                     //插入数据库
                     var sys_Email = new Sys_Email()
