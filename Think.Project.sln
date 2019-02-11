@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Think.Mapping", "Mapping\Th
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Think.Repository", "Think.Repository\Think.Repository.csproj", "{DC9C2E6D-F814-4E53-9C96-B1B4404BED3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Unit", "Test.Unit\Test.Unit.csproj", "{57FC2B45-17F4-4404-9F91-93782B417987}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{DC9C2E6D-F814-4E53-9C96-B1B4404BED3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC9C2E6D-F814-4E53-9C96-B1B4404BED3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC9C2E6D-F814-4E53-9C96-B1B4404BED3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57FC2B45-17F4-4404-9F91-93782B417987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57FC2B45-17F4-4404-9F91-93782B417987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57FC2B45-17F4-4404-9F91-93782B417987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57FC2B45-17F4-4404-9F91-93782B417987}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
